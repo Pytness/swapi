@@ -65,7 +65,7 @@ class StarWarsAPIClient:
         return Film(**response)
 
 
-    def search_character_by_name(self, name: str) -> Character | None:
+    def search_characters_by_name(self, name: str) -> list[Character] | None:
         """
         Search for a character by name.
         """
@@ -75,7 +75,7 @@ class StarWarsAPIClient:
         if response is None:
             return None
 
-        return Character(**response['results'][0])
+        return [Character(**result) for result in response['results']]
 
 
     def get_characters_in_film(self, film_id: int) -> list[Character] | None:
