@@ -45,6 +45,7 @@ class StarWarsAPIClient:
 
         return Planet(**response)
 
+
     def get_film_by_id(self, film_id: int) -> Film:
         """
         Get a film by ID.
@@ -79,7 +80,6 @@ class StarWarsAPIClient:
             character = self.get_character_by_id(character_id)
 
             characters.append(character)
-
 
         return characters
 
