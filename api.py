@@ -45,12 +45,12 @@ class StarWarsAPIClient:
 
         return Planet(**response)
 
-    def get_film_by_id(self, planet_id: int) -> Film:
+    def get_film_by_id(self, film_id: int) -> Film:
         """
         Get a film by ID.
         """
 
-        response = self._get(f'films/{planet_id}/')
+        response = self._get(f'films/{film_id}/')
 
         return Film(**response)
 
