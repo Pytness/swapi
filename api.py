@@ -33,6 +33,8 @@ class StarWarsAPIClient:
     def get_character_by_id(self, character_id: int) -> Character | None:
         """
         Get a character by ID.
+
+        Returns None if the character is not found.
         """
 
         response = self._get(f'people/{character_id}/')
@@ -46,6 +48,8 @@ class StarWarsAPIClient:
     def get_planet_by_id(self, planet_id: int) -> Planet | None:
         """
         Get a planet by ID.
+
+        Returns None if the planet is not found.
         """
 
         response = self._get(f'planets/{planet_id}/')
@@ -59,6 +63,8 @@ class StarWarsAPIClient:
     def get_film_by_id(self, film_id: int) -> Film | None:
         """
         Get a film by ID.
+
+        Returns None if the film is not found.
         """
 
         response = self._get(f'films/{film_id}/')
@@ -76,8 +82,9 @@ class StarWarsAPIClient:
 
         response = self._get(f'people/?search={name}')
 
+        # `response` should never be None, but we'll check just in case.
         if response is None:
-            return None
+            raise ValueError('Invalid response from API')
 
         return [Character(**result) for result in response['results']]
 
@@ -85,6 +92,8 @@ class StarWarsAPIClient:
     def get_characters_in_film(self, film_id: int) -> list[Character] | None:
         """
         Get all characters in a film.
+
+        Returns None if the film is not found.
         """
 
         film = self.get_film_by_id(film_id)
@@ -106,6 +115,8 @@ class StarWarsAPIClient:
     def get_films_by_character_id(self, character_id: int) -> list[Film] | None:
         """
         Get all films a character has appeared in.
+
+        Retuns None if the character is not found.
         """
 
         character = self.get_character_by_id(character_id)
