@@ -65,7 +65,7 @@ class TestStarWarsAPIClient(unittest.TestCase):
 
 
     def test_get_characters_in_film_success(self):
-        characters = self.client.get_characters_in_film(1)
+        characters = self.client.get_characters_by_film_id(1)
 
         self.assertIsInstance(characters, list)
         self.assertIsInstance(characters[0], Character)
@@ -73,7 +73,7 @@ class TestStarWarsAPIClient(unittest.TestCase):
 
 
     def test_get_characters_in_film_failed(self):
-        characters = self.client.get_characters_in_film(-1)
+        characters = self.client.get_characters_by_film_id(-1)
 
         self.assertIsNone(characters)
 

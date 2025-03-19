@@ -89,7 +89,7 @@ class StarWarsAPIClient:
         return [Character(**result) for result in response['results']]
 
 
-    def get_characters_in_film(self, film_id: int) -> list[Character] | None:
+    def get_characters_by_film_id(self, film_id: int) -> list[Character] | None:
         """
         Get all characters in a film.
 
