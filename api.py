@@ -2,20 +2,7 @@ import requests
 
 from models import Character, Planet, Film
 
-
-def get_id_from_url(url: str) -> int | None:
-    """
-    Get the ID from a URL in the form: https://swapi.dev/api/characters/1/
-
-    Returns None if the URL is invalid.
-    """
-
-    value = url.split('/')[-2]
-
-    try:
-        return int(value)
-    except ValueError:
-        return None
+from utils import get_id_from_url
 
 
 class StarWarsAPIClient:
@@ -118,10 +105,8 @@ class StarWarsAPIClient:
 
         characters: list[Character] = []
 
-        for character_url in film.characters:
-            character_id = get_id_from_url(character_url)
+        for character_id in film.character_ids():
             character = self.get_character_by_id(character_id)
-
             characters.append(character)
 
         return characters
@@ -141,10 +126,8 @@ class StarWarsAPIClient:
 
         films: list[Film] = []
 
-        for film_url in character.films:
-            film_id = get_id_from_url(film_url)
+        for film_id in character.film_ids():
             film = self.get_film_by_id(film_id)
-
             films.append(film)
 
         return films
