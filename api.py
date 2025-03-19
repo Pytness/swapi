@@ -67,7 +67,7 @@ class StarWarsAPIClient:
 
     def search_characters_by_name(self, name: str) -> list[Character] | None:
         """
-        Search for a character by name.
+        Search for a characters by name.
         """
 
         response = self._get(f'people/?search={name}')
@@ -99,7 +99,7 @@ class StarWarsAPIClient:
         return characters
 
 
-    def get_films_by_character(self, character_id: int) -> list[Film] | None:
+    def get_films_by_character_id(self, character_id: int) -> list[Film] | None:
         """
         Get all films a character has appeared in.
         """
