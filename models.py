@@ -38,8 +38,6 @@ class Planet(Record):
     terrain: str
     surface_water: str
     population: str
-    episode_id: str
-    episode_id: str
     residents: list[str]
     films: list[str]
 
