@@ -23,7 +23,11 @@ class StarWarsAPIClient:
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
-            return None
+
+            if e.response.status_code == 404:
+                return None
+
+            raise e
 
 
     def get_character_by_id(self, character_id: int) -> Character | None:
