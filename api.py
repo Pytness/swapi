@@ -1,7 +1,5 @@
 import requests
 
-from rich import print
-
 from models import Character, Planet, Film
 
 
@@ -20,58 +18,75 @@ class StarWarsAPIClient:
 
         url = f'{self.BASE_URL}{endpoint}'
 
-        response = self.session.get(url, timeout=5)
-        response.raise_for_status()
+        try:
+            response = self.session.get(url, timeout=5)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            return None
 
-        return response.json()
 
-
-    def get_character_by_id(self, character_id: int) -> Character:
+    def get_character_by_id(self, character_id: int) -> Character | None:
         """
         Get a character by ID.
         """
 
         response = self._get(f'people/{character_id}/')
 
+        if response is None:
+            return None
+
         return Character(**response)
 
 
-    def get_planet_by_id(self, planet_id: int) -> Planet:
+    def get_planet_by_id(self, planet_id: int) -> Planet | None:
         """
         Get a planet by ID.
         """
 
         response = self._get(f'planets/{planet_id}/')
 
+        if response is None:
+            return None
+
         return Planet(**response)
 
 
-    def get_film_by_id(self, film_id: int) -> Film:
+    def get_film_by_id(self, film_id: int) -> Film | None:
         """
         Get a film by ID.
         """
 
         response = self._get(f'films/{film_id}/')
 
+        if response is None:
+            return None
+
         return Film(**response)
 
 
-    def search_character_by_name(self, name: str) -> Character:
+    def search_character_by_name(self, name: str) -> Character | None:
         """
         Search for a character by name.
         """
 
         response = self._get(f'people/?search={name}')
 
+        if response is None:
+            return None
+
         return Character(**response['results'][0])
 
 
-    def get_characters_in_film(self, film_id: int) -> list[Character]:
+    def get_characters_in_film(self, film_id: int) -> list[Character] | None:
         """
         Get all characters in a film.
         """
 
         film = self.get_film_by_id(film_id)
+
+        if film is None:
+            return None
 
         characters: list[Character] = []
 
@@ -84,12 +99,15 @@ class StarWarsAPIClient:
         return characters
 
 
-    def get_films_by_character(self, character_id: int) -> list[Film]:
+    def get_films_by_character(self, character_id: int) -> list[Film] | None:
         """
         Get all films a character has appeared in.
         """
 
         character = self.get_character_by_id(character_id)
+
+        if character is None:
+            return None
 
         films: list[Film] = []
 
