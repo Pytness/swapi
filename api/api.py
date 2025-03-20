@@ -1,6 +1,6 @@
 import requests
 
-from models import Character, Planet, Film
+from .models import Character, Planet, Film
 
 
 class StarWarsAPIClient:
