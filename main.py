@@ -30,7 +30,6 @@ if __name__ == '__main__':
 
     print(f"Homeworld: {homeworld.name}")
 
-
     films = client.get_films_by_character_id(luke.id())
 
     if not films:

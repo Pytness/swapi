@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from utils import get_id_from_url
 
+
 @dataclass
 class Record:
     created: str
@@ -10,6 +11,7 @@ class Record:
 
     def id(self) -> int:
         return get_id_from_url(self.url)
+
 
 @dataclass
 class Character(Record):

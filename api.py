@@ -29,7 +29,6 @@ class StarWarsAPIClient:
 
             raise e
 
-
     def get_character_by_id(self, character_id: int) -> Character | None:
         """
         Get a character by ID.
@@ -43,7 +42,6 @@ class StarWarsAPIClient:
             return None
 
         return Character(**response)
-
 
     def get_planet_by_id(self, planet_id: int) -> Planet | None:
         """
@@ -59,7 +57,6 @@ class StarWarsAPIClient:
 
         return Planet(**response)
 
-
     def get_film_by_id(self, film_id: int) -> Film | None:
         """
         Get a film by ID.
@@ -74,7 +71,6 @@ class StarWarsAPIClient:
 
         return Film(**response)
 
-
     def search_characters_by_name(self, name: str) -> list[Character]:
         """
         Search for a characters by name.
@@ -88,8 +84,9 @@ class StarWarsAPIClient:
 
         return [Character(**result) for result in response['results']]
 
-
-    def get_characters_by_film_id(self, film_id: int) -> list[Character] | None:
+    def get_characters_by_film_id(
+            self, film_id: int
+    ) -> list[Character] | None:
         """
         Get all characters in a film.
 
@@ -109,8 +106,9 @@ class StarWarsAPIClient:
 
         return characters
 
-
-    def get_films_by_character_id(self, character_id: int) -> list[Film] | None:
+    def get_films_by_character_id(
+        self, character_id: int
+    ) -> list[Film] | None:
         """
         Get all films a character has appeared in.
 
