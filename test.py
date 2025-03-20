@@ -1,7 +1,5 @@
 import unittest
-from api import StarWarsAPIClient
-
-from models import Character, Planet, Film
+from api import StarWarsAPIClient,  Character, Planet, Film
 
 
 class TestStarWarsAPIClient(unittest.TestCase):
