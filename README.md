@@ -24,3 +24,7 @@ For a quick demonstration of the API working, run:
 To run the tests execute:
 
 `python -m unittest test`
+
+or
+
+`python test.py`
