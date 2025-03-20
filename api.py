@@ -2,8 +2,6 @@ import requests
 
 from models import Character, Planet, Film
 
-from utils import get_id_from_url
-
 
 class StarWarsAPIClient:
     """Star Wars API Client"""

@@ -1,7 +1,7 @@
 import sys
 
 
-from api import StarWarsAPIClient, get_id_from_url
+from api import StarWarsAPIClient
 
 
 if __name__ == '__main__':
